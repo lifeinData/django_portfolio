@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-{% load staticfiles %}
+  {% load staticfiles %}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +8,7 @@
   <meta name="author" content="">
 
 
-  <title>Updates coming</title>
+  <title>Updates coming soon</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,52 +19,38 @@
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'home' %}">Jimmy</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="{% static 'Student-Resume-Format.jpg' %}">Cool pic</a>
-          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Jimmy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="{% static 'Student-Resume-Format.jpg' %}">Cool pic</a>
+            <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
   </header>
 
   <main role="main">
+    <div class="container">
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Hi I'm Jimmy</h1>
-        <p class="lead text-muted">Update Coming Soon</p>
-        <p>
-          <a href=""class="btn btn-primary my-2">Email Me</a>
-        </p>
-       
-      </div>
-    </section>
+    <h1 class="text-center pt-3">Welcome to Jimmy's Blog</h1>
+    <br />
+    <br />
+    <h2>Latest Posts</h2>
+    <hr />
 
-    <div class="album py-5 bg-light">
-      <div class="container">
+    {% for blog in blogs.all %}
+    <a href = "{% url 'detail' blog.id %}" h3>{{ blog.title }}</h3></a>
+    {{ blog.pub_date_pretty}}
+    <br />
+    <img class="img-fluid" src="{{ blog.image.url }}" height=200 width=200 />
+    <br />
+    <p>{{ blog.summary }}</p>
+    {% endfor %}
 
-        <div class="row">
-
-          {% for job in jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="{{ job.image.url }}" />
-              <div class="card-body">
-                <p class="card-text">{{ job.summary }}</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-
-
-        </div>
-      </div>
-    </div>
+  </div>
 
   </main>
 
