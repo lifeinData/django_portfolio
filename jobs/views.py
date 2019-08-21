@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+# import the objects to use for this page
 from .models import Job
 
 
