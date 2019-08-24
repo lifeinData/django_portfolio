@@ -136,3 +136,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Where the person can go in terms of url if they click on the url
 MEDIA_URL = '/media/'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
